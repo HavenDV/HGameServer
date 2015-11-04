@@ -1,5 +1,6 @@
 TARGET = server
 QT += core network gui
+QMAKE_CXXFLAGS += -std=c++1y
 HEADERS += ./hserver.h \
     ./hconnection.h \
     ./hgameserver.h \

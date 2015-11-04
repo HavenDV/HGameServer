@@ -9,12 +9,12 @@
 #include "hobject.h"
 #include "hworld.h"
 
-class hGameServer Q_DECL_FINAL : public hObject {
+class HGameServer Q_DECL_FINAL : public HObject {
 	Q_OBJECT
 
 public:
-	hGameServer( hWorldPtr _world, QString _name );
-	~hGameServer();
+	HGameServer( HWorldPtr _world, QString _name );
+	~HGameServer();
 	void		init() Q_DECL_FINAL;
 
 private:

@@ -15,17 +15,17 @@
 #include <QVector2D>
 #include <QLine>
 
-class hObject : public HThreadParent {
+class HObject : public HThreadParent {
 	Q_OBJECT
 
 public:
-	hObject( hWorldPtr _world, QString _name );
-	virtual ~hObject();
+	HObject( HWorldPtr _world, QString _name );
+	virtual ~HObject();
 
 protected:
-	hWorldPtr				world;
+	HWorldPtr				world;
 	QString					name;
-	uint					type;
+	GObjectType				type;
 
 	QString					parent;
 	QSizeF					size;

@@ -8,12 +8,12 @@
 const auto settingsFileName = "settings.ini";
 const auto settingsFormat = QSettings::IniFormat;
 
-hWorld::hWorld( QObject* parent ) : QObject{ parent } {
+HWorld::HWorld( QObject* parent ) : QObject{ parent } {
 	load();
 	reinit();
 }
 
-void			hWorld::save() {
+void	HWorld::save() {
 	QSettings settings{ settingsFileName, settingsFormat };
 	settings.clear();
 
@@ -39,7 +39,7 @@ void			hWorld::save() {
 	}
 }
 
-void			hWorld::load() {
+void	HWorld::load() {
 	QSettings settings{ settingsFileName, settingsFormat };
 	GNames objectNames;
 
@@ -63,7 +63,7 @@ void			hWorld::load() {
 	}
 }
 
-void			hWorld::reinit() {
+void	HWorld::reinit() {
 	QWriteLocker locker{ &mutex };
 
 	objects.clear();
@@ -99,27 +99,27 @@ void			hWorld::reinit() {
 	objects[ "moon" ][ "angle" ] = qreal( -90.0 );
 }
 
-void			hWorld::set( const QString & objectName, const QString & propertyName, const QVariant & value ) {
+void	HWorld::set( const QString & objectName, const QString & propertyName, const QVariant & value ) {
 	QWriteLocker locker{ &mutex };
 	objects[ objectName ][ propertyName ] = value;
 }
 
-const QVariant	hWorld::get( const QString & objectName, const QString & propertyName ) {
+const QVariant	HWorld::get( const QString & objectName, const QString & propertyName ) {
 	QReadLocker locker{ &mutex };
 	return objects[ objectName ][ propertyName ];
 }
 
-const GObject	hWorld::get( const QString & objectName ) {
+const GObject	HWorld::get( const QString & objectName ) {
 	QReadLocker locker{ &mutex };
 	return objects[ objectName ];
 }
 
-const GNames	hWorld::get() {
+const GNames	HWorld::get() {
 	QReadLocker locker{ &mutex };
 	return objects.keys();
 }
 
-void			hWorld::remove( const QString & objectName ) {
+void			HWorld::remove( const QString & objectName ) {
 	QWriteLocker locker( &mutex );
 	objects.remove( objectName );
 }

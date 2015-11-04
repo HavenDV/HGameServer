@@ -4,16 +4,16 @@
 #include "hthread.h"
 #include <QDebug>
 
-hGameServer::hGameServer( hWorldPtr _world, QString _name )
-	: hObject( _world, _name ) {  
-	connect( this, &hGameServer::set, world.data(), &hWorld::set );
-	connect( this, &hGameServer::remove, world.data(), &hWorld::remove );
+HGameServer::HGameServer( HWorldPtr _world, QString _name )
+	: HObject( _world, _name ) {  
+	connect( this, &HGameServer::set, world.data(), &HWorld::set );
+	connect( this, &HGameServer::remove, world.data(), &HWorld::remove );
 }
 
-hGameServer::~hGameServer() { 
+HGameServer::~HGameServer() { 
 }
 
-void	hGameServer::init() {
+void	HGameServer::init() {
 	for ( auto&& objectName : world->get() )
 		if ( objectName != name )
 			initObject( objectName );
@@ -23,15 +23,15 @@ void	hGameServer::init() {
 	t.start( 10 );
 }
 
-void hGameServer::update() {
+void	HGameServer::update() {
 	send( "time", time++ );
 }
 
-void	hGameServer::initObject( QString objectName ) {
-	auto object = new hObject( world, objectName );
+void	HGameServer::initObject( QString objectName ) {
+	auto object = new HObject( world, objectName );
 
 	addThread( object );
 
-	connect( object, &hObject::set, this, &hGameServer::set );
-	connect( object, &hObject::remove, this, &hGameServer::remove );
+	connect( object, &HObject::set, this, &HGameServer::set );
+	connect( object, &HObject::remove, this, &HGameServer::remove );
 }

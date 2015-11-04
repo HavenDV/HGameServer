@@ -11,7 +11,7 @@
 #include "hgameserver.h"
 #include "hthreadparent.h"
 
-typedef QSharedPointer<hConnection> hConnectionPtr;
+typedef QSharedPointer< HConnection > HConnectionPtr;
 
 class HServer : public HThreadParent {
 	Q_OBJECT
@@ -27,9 +27,9 @@ public slots:
 
 private:
 	QTimer							t;
-	QMap<qintptr, hConnectionPtr>	connections;
-	hWorldPtr						world;
+	HWorldPtr						world;
 	QTcpServer						tcpServer;
+	QMap< qintptr, HConnectionPtr >	connections;
 
 //protected:
 	//virtual void	incomingConnection( qintptr socketDescriptor );

@@ -12,17 +12,17 @@
 
 typedef QSharedPointer<QTcpSocket>	QTcpSocketPtr;
 
-class hConnection : public QObject {
+class HConnection : public QObject {
 	Q_OBJECT
 
 public:
-	hConnection( QTcpSocket* _socket, hWorldPtr _world );
-	~hConnection();
+	HConnection( QTcpSocket* _socket, HWorldPtr _world );
+	~HConnection();
 
 private:
 	QTcpSocketPtr	socket;
+	HWorldPtr		world;
 	qintptr			id;
-	hWorldPtr		world;
 
 private slots:
 	void		bytesWritten( qint64 size );

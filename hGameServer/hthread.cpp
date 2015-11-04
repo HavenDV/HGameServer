@@ -1,7 +1,7 @@
 #include "hthread.h"
 
 HThread::HThread( QObject * parent ) :
-	prepared{ false }, stopped{ false }, QObject{ parent }, t { this } {
+	QObject{ parent }, t{ this }, prepared{ false }, stopped{ false } {
 	connect( &t, &QTimer::timeout, this, &HThread::update );
 }
 

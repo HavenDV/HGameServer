@@ -21,12 +21,13 @@ enum GObjectType {
 	Server,
 	Ship
 };
+Q_DECLARE_METATYPE( GObjectType );
 
-class hWorld :	public QObject {
+class HWorld :	public QObject {
 	Q_OBJECT
 
 public:
-	hWorld( QObject* parent = 0 );
+	HWorld( QObject* parent = 0 );
 
 private:
 	QReadWriteLock	mutex;
@@ -44,7 +45,7 @@ public slots:
 	const GNames			get();
 };
 
-typedef QSharedPointer<hWorld> hWorldPtr;
+typedef QSharedPointer< HWorld > HWorldPtr;
 
 #endif // HWORLD_H
 

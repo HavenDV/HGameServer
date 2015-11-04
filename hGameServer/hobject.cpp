@@ -13,14 +13,12 @@ void operator += ( QPointF& pos, const QVector2D& vec ) {
 	pos.ry() += vec.y();
 }
 
-hObject::hObject( hWorldPtr _world, QString _name )
-	: world( _world ), name( _name ) {
-}
+HObject::HObject( HWorldPtr _world, QString _name )
+	: world( _world ), name( _name ) {}
 
-hObject::~hObject() {
-}
+HObject::~HObject() {}
 
-auto	hObject::getParentAverage( const QString & objectName ) -> QVector2D {
+auto	HObject::getParentAverage( const QString & objectName ) -> QVector2D {
 	if ( objectName.isNull() || objectName == name ) {
 		return QVector2D( 0.0F, 0.0F );
 	}
@@ -43,13 +41,13 @@ auto	hObject::getParentAverage( const QString & objectName ) -> QVector2D {
 	return -F * QVector2D( gpos - objectPos ).normalized();
 }
 
-void	hObject::updateParentProperties() {
+void	HObject::updateParentProperties() {
 	for ( auto && objectName : world->get() ) {
 		otherSpeedVec += getParentAverage( objectName );
 	}
 }
 
-void	hObject::init() {
+void	HObject::init() {
 	send( "init", true );
 
 	get( "type", type );
@@ -74,16 +72,16 @@ void	hObject::init() {
 	}
 }
 
-void	hObject::stop() {
+void	HObject::stop() {
 	HThreadParent::stop();
 	emit remove( name );
 }
 
-void	hObject::send( const QString & propertyName, const QVariant & value ) {
+void	HObject::send( const QString & propertyName, const QVariant & value ) {
 	emit set( name, propertyName, value );
 }
 
-void	hObject::update() {
+void	HObject::update() {
 	auto currentTime = QTime::currentTime();
 	auto currentMsec = 1000 * currentTime.second() + currentTime.msec();
 

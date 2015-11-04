@@ -13,25 +13,25 @@ QString		rus( const char* in ) {
 	//return QStringLiteral( "" );
 }
 
-hConnection::hConnection( QTcpSocket* _socket, hWorldPtr _world ) : 
-					socket( _socket, &QObject::deleteLater ),
-					world( _world ) { 
+HConnection::HConnection( QTcpSocket* _socket, HWorldPtr _world ) :
+	socket{ _socket, &QObject::deleteLater },
+	world{ _world } {
 	id = socket->socketDescriptor();
-	connect( socket.data(), &QTcpSocket::readyRead, this, &hConnection::read );
-	connect( socket.data(), &QTcpSocket::bytesWritten, this, &hConnection::bytesWritten );
+	connect( socket.data(), &QTcpSocket::readyRead, this, &HConnection::read );
+	connect( socket.data(), &QTcpSocket::bytesWritten, this, &HConnection::bytesWritten );
 }
 
-void	hConnection::bytesWritten( qint64 size ) {
+void	HConnection::bytesWritten( qint64 size ) {
 	if ( SOCKET_DEBUG ) qDebug() << "Socket bytes written: " << size << ". ID:" << id;
 	close();
 }
 
-hConnection::~hConnection() {
+HConnection::~HConnection() {
 	socket->close();
 	if ( SOCKET_DEBUG ) qDebug() << "Socket closed. ID:" << id;
 }
 
-void	hConnection::read() {
+void	HConnection::read() {
 	if ( socket->state() != QAbstractSocket::ConnectedState ) 
 		return;
     auto socket = static_cast<QTcpSocket*>( sender() );
@@ -51,7 +51,7 @@ void	hConnection::read() {
 		send();
 }
 
-void	hConnection::sendObjectPos( const QString & name ) {
+void	HConnection::sendObjectPos( const QString & name ) {
 	auto pos = world->get( name, "pos" ).toPointF();
 	auto size = world->get( name, "size" ).toSizeF();
 	auto time = world->get( "server", "time" ).toLongLong();
@@ -68,7 +68,7 @@ void	hConnection::sendObjectPos( const QString & name ) {
 	//qDebug() << QThread::currentThreadId();
 }
 
-void	hConnection::send() {
+void	HConnection::send() {
 	QTextStream stream( socket.data() );
 	stream.setCodec( "UTF-8" );
     stream << http200Ok <<
@@ -103,6 +103,6 @@ void	hConnection::send() {
 	if ( SOCKET_DEBUG ) qDebug() << "Send data to socket ID:" << id;
 }
 
-void	hConnection::close() {
+void	HConnection::close() {
 	emit deleteConnection( id );
 }

@@ -3,7 +3,9 @@
 #include "hthreadparent.h"
 
 HThreadParent::HThreadParent( QObject * parent ) :
-	threadCount{ 0 }, notPreparedThreadCount{ 0 }, HThread{ parent } {};
+	HThread{ parent },
+	notPreparedThreadCount{ 0 },
+	threadCount{ 0 } {};
 
 HThreadParent::~HThreadParent() {}
 
