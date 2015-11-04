@@ -1,4 +1,4 @@
-TARGET = hGameServer
+TARGET = server
 QT += core network gui
 HEADERS += ./hserver.h \
     ./hconnection.h \
