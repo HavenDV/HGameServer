@@ -73,7 +73,7 @@ void	HConnection::send() {
 	stream.setCodec( "UTF-8" );
     stream << http200Ok <<
 		  "<html><head>\n"
-		  "<meta name=\"google - site - verification\" content=\"A4W8kuJwWYqk72IPiBeVRgARAAkvBeJaRndr6YamAvI\" \/>"
+		  "<meta name=\"google - site - verification\" content=\"A4W8kuJwWYqk72IPiBeVRgARAAkvBeJaRndr6YamAvI\" />"
 		  "<link rel='stylesheet' href='//game.havendv.ru/styles.css'>"
 		  "<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>"
 		  "<script src='//game.havendv.ru/jquery.mousewheel.min'></script>"
