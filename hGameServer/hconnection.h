@@ -8,7 +8,7 @@
 #include <QThread>
 #include "hworld.h"
 
-#define SOCKET_DEBUG false
+#define SOCKET_DEBUG true
 
 typedef QSharedPointer< QTcpSocket >	QTcpSocketPtr;
 
