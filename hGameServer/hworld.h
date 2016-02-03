@@ -1,7 +1,4 @@
 #pragma once
-#ifndef HWORLD_H
-#define HWORLD_H
-
 #include <QObject>
 #include <QVariant>
 #include <QMap>
@@ -46,8 +43,6 @@ public slots:
 };
 
 typedef QSharedPointer< HWorld > HWorldPtr;
-
-#endif // HWORLD_H
 
 
 /*

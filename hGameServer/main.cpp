@@ -7,19 +7,23 @@
 constexpr auto debugLevel = 0;
 
 void	myMessageOutput( QtMsgType type, const QMessageLogContext &context, const QString &msg ) {
-	QByteArray localMsg = msg.toLocal8Bit();
+	auto localMsg = msg.toLocal8Bit();
 	switch ( type ) {
 		case QtDebugMsg:
-			if ( debugLevel < 1 )
+			if ( debugLevel < 2 ) {
 				std::cerr << "[D]: " << localMsg.toStdString() << std::endl;
+			}
 			break;
+
 		case QtWarningMsg:
-			if ( debugLevel < 2 )
+			if ( debugLevel < 2 ) {
 				std::cerr << "[W]: " << localMsg.toStdString() << std::endl;
+			}
 			break;
 		case QtCriticalMsg:
-			if ( debugLevel < 3 )
+			if ( debugLevel < 3 ) {
 				std::cerr << "[C]: " << localMsg.toStdString() << std::endl;
+			}
 			break;
 		case QtFatalMsg:
 			std::cerr << "[F]: " << localMsg.toStdString() << std::endl;
@@ -29,7 +33,7 @@ void	myMessageOutput( QtMsgType type, const QMessageLogContext &context, const Q
 }
 
 int	main( int argc, char *argv[] ) {
-	//qInstallMessageHandler( myMessageOutput );
+	qInstallMessageHandler( myMessageOutput );
 	QCoreApplication a{ argc, argv };
 
 	HServer server{ &a };

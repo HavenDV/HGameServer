@@ -1,7 +1,4 @@
 #pragma once
-#ifndef HOBJECT_H
-#define HOBJECT_H
-
 #include <QObject>
 #include <QTimer>
 #include <QPoint>
@@ -57,5 +54,3 @@ signals:
 	void					remove( QString name );
 	void					set( const QString & objectName, const QString & propertyName, const QVariant & value );
 };
-
-#endif // HOBJECT_H

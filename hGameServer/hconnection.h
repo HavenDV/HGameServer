@@ -10,7 +10,7 @@
 
 #define SOCKET_DEBUG false
 
-typedef QSharedPointer<QTcpSocket>	QTcpSocketPtr;
+typedef QSharedPointer< QTcpSocket >	QTcpSocketPtr;
 
 class HConnection : public QObject {
 	Q_OBJECT
@@ -24,14 +24,15 @@ private:
 	HWorldPtr		world;
 	qintptr			id;
 
-private slots:
 	void		bytesWritten( qint64 size );
 	void		read();
 	void		send();
 	void		close();
 	void		sendObjectPos( const QString & name );
+
 signals:
 	void		deleteConnection( qintptr id );
+
 };
 
 #endif // HCONNECTION_H

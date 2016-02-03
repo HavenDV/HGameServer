@@ -40,13 +40,13 @@ void	HConnection::read() {
 	auto data = socket->readAll();
 	auto splittedData = data.split(' ');
 	if ( splittedData.size() < 2 ) return send();
-	if ( SOCKET_DEBUG ) qDebug() << "Method: " << splittedData[0];
-	auto list = splittedData[1].split('/');
+	if ( SOCKET_DEBUG ) qDebug() << "Method: " << splittedData[ 0 ];
+	auto list = splittedData[ 1 ].split('/');
 	if ( list.size() < 3 ) return send();
-	if ( SOCKET_DEBUG ) qDebug() << "Func: " << list[1];
-	if ( SOCKET_DEBUG ) qDebug() << "Arg: " << list[2];
-	if ( list[1] == "getObjectPos" )
-		sendObjectPos( list[2] );
+	if ( SOCKET_DEBUG ) qDebug() << "Func: " << list[ 1 ];
+	if ( SOCKET_DEBUG ) qDebug() << "Arg: " << list[ 2 ];
+	if ( list[ 1 ] == "getObjectPos" )
+		sendObjectPos( list[ 2 ] );
 	else
 		send();
 }
@@ -73,6 +73,7 @@ void	HConnection::send() {
 	stream.setCodec( "UTF-8" );
     stream << http200Ok <<
 		  "<html><head>\n"
+		  "<meta name=\"google - site - verification\" content=\"A4W8kuJwWYqk72IPiBeVRgARAAkvBeJaRndr6YamAvI\" \/>"
 		  "<link rel='stylesheet' href='//game.havendv.ru/styles.css'>"
 		  "<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>"
 		  "<script src='//game.havendv.ru/jquery.mousewheel.min'></script>"
