@@ -8,6 +8,12 @@ const QByteArray http200Ok =	"HTTP/1.1 200 Ok\r\n"
 								"Connection: Keep-Alive\r\n"
 								"\r\n";
 
+const QByteArray http200File = "HTTP/1.0 200 Document follows\r\n"
+"Content-Type: text/html; charset=\"utf-8\"\r\n"
+"Server: havendv.ru \r\n"
+"Content-Length: 58\r\n"
+"\r\n";
+
 QString		rus( const char* in ) {
 	return QString::fromLocal8Bit( in );
 	//return QStringLiteral( "" );
