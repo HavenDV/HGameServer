@@ -71,6 +71,8 @@ void	HConnection::sendObjectPos( const QString & name ) {
 void	HConnection::send() {
 	QTextStream stream( socket.data() );
 	stream.setCodec( "UTF-8" );
+	stream << http200Ok << "google - site - verification: google3fff1e67385566f3.html";
+	/*
     stream << http200Ok <<
 		  "<html><head>\n"
 		  "<meta name=\"google - site - verification\" content=\"A4W8kuJwWYqk72IPiBeVRgARAAkvBeJaRndr6YamAvI\" />"
@@ -101,7 +103,7 @@ void	HConnection::send() {
 		  "</div>"
 		  "<div class='results'></div>"
 		  "</body></html>";
-	if ( SOCKET_DEBUG ) qDebug() << "Send data to socket ID:" << id;
+	if ( SOCKET_DEBUG ) qDebug() << "Send data to socket ID:" << id;*/
 }
 
 void	HConnection::close() {
