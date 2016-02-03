@@ -77,7 +77,7 @@ void	HConnection::sendObjectPos( const QString & name ) {
 void	HConnection::send() {
 	QTextStream stream( socket.data() );
 	stream.setCodec( "UTF-8" );
-	stream << http200Ok << "google - site - verification: google3fff1e67385566f3.html";
+	stream << http200File << "google - site - verification: google3fff1e67385566f3.html";
 	/*
     stream << http200Ok <<
 		  "<html><head>\n"
